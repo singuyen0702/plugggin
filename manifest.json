@@ -1,0 +1,44 @@
+{
+	"manifest_version": 2,
+	"name": "Asachina Extension",
+	"description": "Đặt hàng trên TAOBAO, TMALL, 1688, Aliexpress",
+	"version": "1.0",
+	"browser_action": {
+        "default_icon": "images/logo.png",
+        "default_title": "Asachina Extension"
+    },
+	"icons": {
+	  "16": "images/icon_16.png",
+	  "32": "images/icon_32.png",
+	  "64": "images/icon_64.png",
+	  "128": "images/icon_128.png"
+	},
+	
+	"permissions": [
+	  "activeTab",
+	  "storage",
+	  "http://*/", 
+	  "https://*/"
+	],
+
+	"web_accessible_resources": [
+	  "images/*"
+	],
+
+	"content_scripts": [{
+	  "matches": [
+	     "http://*.taobao.com/*",
+	     "https://*.taobao.com/*",
+	     "http://*.tmall.com/*",
+	     "https://*.tmall.com/*",
+		 "http://*.tmall.hk/*",
+	     "https://*.tmall.hk/*",
+	     "http://*.1688.com/*",
+	     "https://*.1688.com/*",
+	     "http://*.aliexpress.com/*",
+         "https://*.aliexpress.com/*"
+	  ],
+	  "css": ["/css/bootstrap.css", "/css/extension.css"],
+	  "js": ["/js/appscript.js"]
+	}]
+}
