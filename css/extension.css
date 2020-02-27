@@ -26,12 +26,12 @@
   margin: 0px 10px 0px 0px;
 }
 
-#taobaovn-logo {
+#asachina-logo {
   float: left;
   margin: 0px 0px 0px 0px;
 }
 
-#taobaovn-menubar {
+#asachina-menubar {
   background: rgba(0, 124, 194, 0.9);
   padding: 10px 20px;
   position: fixed;
@@ -40,10 +40,10 @@
   width: 100%;
   z-index: 99999999999999999999999;
 }
-#taobaovn-menubar img{
+#asachina-menubar img{
   width: auto !important;
 }
-#taobaovn-menubar .hotline {
+#asachina-menubar .hotline {
   float: left;
   line-height: 37px;
   margin: 0px 0px 0px 0px;
@@ -54,57 +54,58 @@
   color: #fff;
 }
 
-#taobaovn-menubar button {
+#asachina-menubar button {
   float: right;
 }
 
-#taobaovn-btn-translate {
+#asachina-btn-translate {
   margin: 0 5px 0 50px;
 }
 
-#taobaovn-menubar label {
+#asachina-menubar label {
   cursor: pointer;
   margin-right: 10px;
 }
 
-#taobaovn-info {
+#asachina-info {
   width: 99%;
   margin: 10px auto;
   padding: 0px 0px;
   font-size: 16px;
-  border: 3px solid #007CC2;
+  border: 1px solid #007CC2;
   overflow: hidden;
   background: rgba(199, 146, 46, 0.207843);
 }
 
-.taobaovn-info-inner {
+.asachina-info-inner {
+  background-color: rgba(255, 255,255, 0.2);
   padding: 0px 10px 10px 10px;
   overflow: hidden;
 }
 
-#taobaovn-info .tool_title {
-  background: #007CC2;
+#asachina-info .tool_title {
+  background: rgb(0, 0, 0);
   text-align: center;
   color: #fff;
   text-transform: uppercase;
   font-family: Arial;
   padding: 4px 0px 7px 0px;
-  margin: 0px 0px 7px 0px;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 400;
 }
 
-#taobaovn-info .taobaovn_note {
-  border-top: 3px solid #007CC2;
+#asachina-info .asachina_note {
+  border-top: 1px solid #007CC2;
   float: left;
   width: 100%;
   padding: 10px 0px;
   text-align: center;
   outline: none;
   display: table-cell;
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
-#taobaovn-info .taobaovn_note textarea {
+#asachina-info .asachina_note textarea {
   padding: 5px;
   width: 95%;
   font-size: 13px;
@@ -113,18 +114,18 @@
   border: 1px solid #f00;
 }
 
-#taobaovn-info img {
+#asachina-info img {
   width: 140px;
   float: left;
   margin: 0px 15px 0px 0px;
 }
 
-#taobaovn-info ul {
+#asachina-info ul {
   float: left;
   padding: 0px 0px 0px 0px;
 }
 
-#taobaovn-info ul li {
+#asachina-info ul li {
   font-size: 14px;
   font-family: Arial;
   color: #000000;
@@ -132,7 +133,7 @@
   margin-left: 0px !important;
 }
 
-#taobaovn-warning-bar {
+#asachina-warning-bar {
   position: absolute;
   top: -50px;
   left: 50%;
@@ -143,14 +144,14 @@
   color: #fff;
 }
 
-#taobaovn-btn-removeall {
+#asachina-btn-removeall {
   float: right;
   color: red;
   text-decoration: underline;
   cursor: pointer;
 }
 
-#taobaovn-cart aside#taobaovnx-sidebar {
+#asachina-cart aside#asachinax-sidebar {
   font-weight: bold;
   text-align: center;
   position: absolute;
@@ -168,7 +169,7 @@
   display: none;
 }
 
-.taobaovn-modal {
+.asachina-modal {
   position: fixed;
   width: 500px;
   background-color: #fff;
@@ -178,7 +179,7 @@
   box-shadow: 0 -1px 5px rgba(0,0,0,.4);
 }
 
-.taobaovn-modal h3 {
+.asachina-modal h3 {
   font-size: 15px;
   font-weight: bold;
   color: #fff;
@@ -190,23 +191,23 @@
   border-bottom: 2px solid #d20c16;
 }
 
-.taobaovn-modal h3 span {
+.asachina-modal h3 span {
   font-size: 12px;
   font-weight: normal;
   float: right;
   color: #999;
 }
 
-.taobaovn-modal h3 span:hover {
+.asachina-modal h3 span:hover {
   color: #fff;
 }
 
-.taobaovn-modal-body {
+.asachina-modal-body {
   padding: 10px;
   overflow-y: scroll;
 }
 
-#taobaovn-product-list li {
+#asachina-product-list li {
   padding: 5px;
   overflow: hidden;
   border: 1px solid #dedede;
@@ -215,31 +216,31 @@
   position: relative;
 }
 
-#taobaovn-product-list div {
+#asachina-product-list div {
   padding-left: 165px;
 }
 
-#taobaovn-product-list aside {
+#asachina-product-list aside {
   width: 150px;
 }
 
-#taobaovn-product-list p {
+#asachina-product-list p {
   color: #555;
   line-height: 17px;
 }
 
-#taobaovn-product-list h4 {
+#asachina-product-list h4 {
   font-size: 13px;
   margin-bottom: 3px;
   font-weight: bold;
 }
 
-#taobaovn-product-list .text-warning {
+#asachina-product-list .text-warning {
   color: rgb(138, 109, 59) !important;
   font-style: italic;
 }
 
-#taobaovn-guide-box h4 {
+#asachina-guide-box h4 {
   font-size: 13px;
   text-align: center;
   font-weight: bold;
@@ -247,7 +248,7 @@
   padding: 10px;
 }
 
-.taobaovn-product-del {
+.asachina-product-del {
   position: absolute;
   right: 10px;
   top: 10px;
@@ -255,23 +256,21 @@
   text-decoration: underline;
 }
 
-.taobaovn-rate {
-  font-weight: bold;
-  font-size: 18px;
+.asachina-rate {
+  font-size: 20px;
 }
 
-.taobaovn-color-price {
+.asachina-color-price {
   color: #D31A1A;
-  font-weight: bold;
 }
 
-.taobaovn-btn-translate {
+.asachina-btn-translate {
   font-weight: bold;
   cursor: pointer;
   margin-left: 20px;
 }
 
-.taobaovn-btn-translate input {
+.asachina-btn-translate input {
   margin-right: 5px;
 }
 
@@ -283,7 +282,8 @@
   -ms-border-radius: 0px !important;
 }
 
-.taobaovn-info-warning {
+.asachina-info-warning {
+  text-align: center;
   float: left;
   font-size: 13px;
   margin: 10px 0 0;
@@ -294,7 +294,7 @@
   font-family: Arial;
 }
 
-#taobaovn-alert-wrapper {
+#asachina-alert-wrapper {
   position: fixed;
   top: 50%;
   margin: -136px 0px 0px 0px;
@@ -305,14 +305,14 @@
   border: 1px solid #DA251C;
 }
 
-#taobaovn-alert-header {
+#asachina-alert-header {
   color: #fff;
   padding: 0px 5px;
   position: relative;
   background-color: #DA251C;
 }
 
-#taobaovn-alert-header h4 {
+#asachina-alert-header h4 {
   font-weight: bold;
   font-size: 13px;
   width: 330px;
@@ -323,7 +323,7 @@
   margin: 0px 0px;
 }
 
-#taobaovn-alert-header span {
+#asachina-alert-header span {
   position: absolute;
   right: 7px;
   top: 7px;
@@ -334,17 +334,17 @@
   border-radius: 50%;
 }
 
-#taobaovn-alert-header span:hover {
+#asachina-alert-header span:hover {
 }
 
-#taobaovn-alert-body {
+#asachina-alert-body {
   padding: 15px;
   text-align: center;
   margin: 0px;
   font-family: Arial;
 }
 
-#taobaovn-alert-backdrop {
+#asachina-alert-backdrop {
   position: fixed;
   top: 0;
   left: 0;
@@ -354,11 +354,11 @@
   height: 100%;
 }
 
-#taobaovn-btn-guide {
+#asachina-btn-guide {
   margin-right: 65px;
   height: 37px;
-  padding: 0px 10px 0px 10px;
-  background: #088847;
+  padding: 0px 15px 0px 25px;
+  background: #088847 url("chrome-extension://__MSG_@@extension_id__/images/hd_icon.png") 5px center no-repeat;
   color: #fff;
   font-size: 14px;
   text-transform: uppercase;
@@ -368,11 +368,11 @@
     border: 1px solid #fff;
 }
 
-#taobaovn-btn-submit {
+#asachina-btn-submit {
   margin-right: 10px;
   height: 37px;
-  padding: 0px 10px 0px 10px;
-  background: #f4463d;
+  padding: 0px 15px 0px 40px;
+  background: #f4463d url("chrome-extension://__MSG_@@extension_id__/images/add.png") 5px center no-repeat;
   color: #fff;
   font-size: 14px;
   text-transform: uppercase;
@@ -381,7 +381,7 @@
   float: right;
   border: 1px solid #fff;
 }
-.taobaovn_action{
+.asachina_action{
   display: table;
   text-align: center;
   float: left;
@@ -389,7 +389,7 @@
   padding: 8px 0px;
   border-top: 3px solid #007cc2;
 }
-#taobaovn-btn-product{
+#asachina-btn-product{
   margin-right: 20px;
   height: 30px;
   padding: 0px 10px 0px 10px;
@@ -401,7 +401,7 @@
   line-height: 28px;
   border: 1px solid #fff;
 }
-#taobaovn-btn-shop{
+#asachina-btn-shop{
   margin-right: 10px;
   height: 30px;
   padding: 0px 10px 0px 10px;
@@ -413,7 +413,7 @@
   line-height: 28px;
   border: 1px solid #fff;
 }
-#taobaovn-btn-search-1688{
+#asachina-btn-search-1688{
   height: 30px;
   padding: 0px 10px 0px 10px;
   background: #ff7300;
@@ -424,11 +424,11 @@
   line-height: 28px;
   border: 1px solid #fff;
 }
-#taobaovn-btn-show-cart {
+#asachina-btn-show-cart {
   margin-right: 10px;
   height: 37px;
-  padding: 0px 15px 0px 15px;
-  background: #088847;
+  padding: 0px 15px 0px 40px;
+  background: #088847 url("chrome-extension://__MSG_@@extension_id__/images/view.png") 5px center no-repeat;
   color: #fff;
   font-size: 14px;
   text-transform: uppercase;
@@ -438,11 +438,10 @@
   border: 1px solid #fff;
 }
 
-#taobaovn-btn-hide-show {
+#asachina-btn-hide-show {
   position: fixed;
-  height: 59px;
+  height: 57px;
   width: 50px;
-  background: none;
   bottom: 0px;
   right: 0px;
   border: none;
@@ -452,10 +451,9 @@
 
 .arrow-show {
   transform: rotate(180deg);
-  background: rgba(0, 124, 194, 0.9) !important;
 }
 
-#taobaovn-info .bg-info {
+#asachina-info .bg-info {
   clear: both;
   background-color: #d9edf7;
   font-size: 14px;
@@ -625,11 +623,11 @@ a.bg-danger:hover,a.bg-danger:focus {
   background-color: #e4b9b9;
 }
 
-#taobaovn-info a.bg-info:hover,#taobaovn-info a.bg-info:focus {
+#asachina-info a.bg-info:hover,#asachina-info a.bg-info:focus {
   background-color: #afd9ee;
 }
 
-#taobaovn-info .bg-info dd {
+#asachina-info .bg-info dd {
   display: inline-block;
   margin-right: 15px;
   width: 45%;
@@ -674,12 +672,12 @@ a.bg-danger:hover,a.bg-danger:focus {
   right: 250px;
 }
 
-.taobaovn_remove, .taobaovn_remove:hover,.taobaovn_remove1, .taobaovn_remove1:hover {
+.asachina_remove, .asachina_remove:hover,.asachina_remove1, .asachina_remove1:hover {
   text-decoration: none;
   color: #ffffff;
 }
 
-.taobaovn_box_title {
+.asachina_box_title {
   background-color: #4E69A2;
   padding: 5px 10px;
   color: #ffffff;
@@ -806,6 +804,34 @@ a.bg-danger:hover,a.bg-danger:focus {
   margin: 0px 0px 0px 20px;
   text-align: right;
 }
+
+.element-hide {
+  display: none;
+}
+
+.bg-warning {
+  background-color: rgb(255, 193, 7) !important;
+}
+
+.tag-ext {
+  margin-top: 10px;
+  font-size: 12px;
+  color: #ffffff;
+}
+
+.tag-value {
+  margin-top: 10px;
+  margin-left: 10px;
+  font-size: 12px;
+  color: #ffffff;
+}
+
+.tag-warning {
+  color: #ffffff;
+  font-size: 13px;
+  margin-top: 10px;
+}
+
 @media screen and (max-width:1360px) {
   .hotline {
     display: none !important;
