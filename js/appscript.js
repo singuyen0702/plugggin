@@ -1,5 +1,4 @@
-// var host = 'http://asachina.vn';
-var host = 'http://localhost:8000';
+var host = 'http://asachina.vn';
 var _url_1688 = window.location.href,
   _items1688 = _url_1688.indexOf("items.1688.com");
 
@@ -10,9 +9,43 @@ if (0 < _items1688) {
   window.location.href = new_url_1688, console.log(new_url_1688)
 }
 
-function addItem(item) {
-  storageData.push(item);
-  console.log(storageData);
+function addItem(e) {
+
+  $.get(host + '/api/checkLogin', function(t) {
+    $("#asachina-btn-submit").removeAttr("disabled"); 
+    $("#cart-mask").hide();
+    if (t != 0 && t != '0') {
+      if (storageData.length == 0) {
+        // Bình thường
+        asachinaAlert("Thông báo", '<p>Thêm sản phẩm vào giỏ hàng thành công.</p><p style="margin-top: 20px; text-align: center"><button class="btn btn-success btn-sm asachinaremovebox">Tiếp tục mua hàng</button> <button class="btn btn-default btn-sm btn-show-cart">Xem giỏ hàng</button></p></p>');
+      }
+    
+      storageData.forEach(function(item, index, object) {
+        if (e.proId == item.proId 
+          && e.skullId == item.skullId 
+          && e.size == item.size 
+          && e.sizetxt == item.sizetxt
+          && e.color == item.color
+          && e.colortxt == item.colortxt) {
+            object.splice(index, 1);
+            // Đã tồn tại, cập nhật số lượng
+            asachinaAlert("Thông báo", '<p>Sản phẩm đã có trong giỏ hàng, cập nhật số lượng thành công.</p><p style="margin-top: 20px; text-align: center"><button class="btn btn-success btn-sm asachinaremovebox">Tiếp tục mua hàng</button> <button class="btn btn-default btn-sm btn-show-cart">Xem giỏ hàng</button></p>'); 
+        } else {
+          // Bình thường
+          asachinaAlert("Thông báo", '<p>Thêm sản phẩm vào giỏ hàng thành công.</p><p style="margin-top: 20px; text-align: center"><button class="btn btn-success btn-sm asachinaremovebox">Tiếp tục mua hàng</button> <button class="btn btn-default btn-sm btn-show-cart">Xem giỏ hàng</button></p></p>');
+        }
+      });
+  
+      storageData.push(e);
+    } else {
+      asachinaAlert("Thông báo", "Vui lòng đăng nhập asachina.vn!");
+    }
+  }).fail(function() {
+    $("#asachina-btn-submit").removeAttr("disabled"); 
+    $("#cart-mask").hide();
+
+    asachinaAlert("Thông báo", "Vui lòng đăng nhập asachina.vn!");
+  });
 }
 
 var defaults = {
@@ -294,43 +327,9 @@ function addToCart1688() {
         method: "Chrome Extension"
       };
       s.push(e), console.log(s), u.data = s, console.log('e -->'), console.log(e);
-      $("#asachina-btn-submit").removeAttr("disabled"); 
-      $("#cart-mask").hide();
-
-      if (storageData.length == 0) {
-        // Bình thường
-        asachinaAlert("Thông báo", '<p>Thêm sản phẩm vào giỏ hàng thành công.</p><p style="margin-top: 20px; text-align: center"><button class="btn btn-success btn-sm asachinaremovebox">Tiếp tục mua hàng</button> <button class="btn btn-default btn-sm btn-show-cart">Xem giỏ hàng</button></p></p>');
-      }
-
-      storageData.forEach(function(item, index, object) {
-        if (e.proId == item.proId 
-          && e.skullId == item.skullId 
-          && e.size == item.size 
-          && e.sizetxt == item.sizetxt
-          && e.color == item.color
-          && e.colortxt == item.colortxt) {
-            object.splice(index, 1);
-            // Đã tồn tại, cập nhật số lượng
-            asachinaAlert("Thông báo", '<p>Sản phẩm đã có trong giỏ hàng, cập nhật số lượng thành công.</p><p style="margin-top: 20px; text-align: center"><button class="btn btn-success btn-sm asachinaremovebox">Tiếp tục mua hàng</button> <button class="btn btn-default btn-sm btn-show-cart">Xem giỏ hàng</button></p>'); 
-        } else {
-          // Bình thường
-          asachinaAlert("Thông báo", '<p>Thêm sản phẩm vào giỏ hàng thành công.</p><p style="margin-top: 20px; text-align: center"><button class="btn btn-success btn-sm asachinaremovebox">Tiếp tục mua hàng</button> <button class="btn btn-default btn-sm btn-show-cart">Xem giỏ hàng</button></p></p>');
-        }
-      });
-
       addItem(e);
     })
   });
-  
-  // Yêu cầu đăng nhập
-  // $("#cart-mask").hide(), 
-  // asachinaAlert("Thông báo", '<p><b>Bạn vui lòng đăng nhập hệ thống để thêm sản phẩm vào giỏ hàng. </b><br> <span style="color: red;">(Khi bạn đăng nhập thì khi chuyển máy tính khác giỏ hàng của bạn vẫn được giữ nguyên)</span></p><p style="margin-top: 20px; text-align: center"><a target="_blank" href="https://taobaovietnam.vn/dang-nhap" class="btn btn-success btn-sm asachinaremovebox">Đăng nhập</a> <a target="_blank" href="https://taobaovietnam.vn/dang-ky" class="btn btn-default btn-sm">Đăng ký</a></p>');
-
-  // $.post("https://taobaovietnam.vn/ShopCart/AddNewProduct", u, function (t) {
-  //   null != t && (1 == t.data ? ($("#asachina-btn-submit").removeAttr("disabled"), $("#cart-mask").hide(), asachinaAlert("Thông báo", '<p>Thêm sản phẩm vào giỏ hàng thành công.</p><p style="margin-top: 20px; text-align: center"><button class="btn btn-success btn-sm asachinaremovebox">Tiếp tục mua hàng</button> <a target="_blank" href="http://taobaovietnam.vn/gio-hang" class="btn btn-default btn-sm">Xem giỏ hàng</a></p>')) : 2 == t.data ? ($("#asachina-btn-submit").removeAttr("disabled"), $("#cart-mask").hide(), asachinaAlert("Thông báo", '<p>Sản phẩm đã có trong giỏ hàng, cập nhật số lượng thành công.</p><p style="margin-top: 20px; text-align: center"><button class="btn btn-success btn-sm asachinaremovebox">Tiếp tục mua hàng</button> <a target="_blank" href="http://taobaovietnam.vn/gio-hang" class="btn btn-default btn-sm">Xem giỏ hàng</a></p>')) : 4 == t.data ? ($("#cart-mask").hide(), asachinaAlert("Thông báo", '<p><b>Bạn vui lòng đăng nhập hệ thống để thêm sản phẩm vào giỏ hàng. </b><br> <span style="color: red;">(Khi bạn đăng nhập thì khi chuyển máy tính khác giỏ hàng của bạn vẫn được giữ nguyên)</span></p><p style="margin-top: 20px; text-align: center"><a target="_blank" href="https://taobaovietnam.vn/dang-nhap" class="btn btn-success btn-sm asachinaremovebox">Đăng nhập</a> <a target="_blank" href="https://taobaovietnam.vn/dang-ky" class="btn btn-default btn-sm">Đăng ký</a></p>')) : ($("#cart-mask").hide(), asachinaAlert("Thông báo lỗi", "Không thêm được sản phẩm vào giỏ hàng.")))
-  // }).fail(function (t) {
-  //   console.log(u), console.log(t), $("#cart-mask").hide(), asachinaAlert("Thông báo lỗi", "Không thêm được sản phẩm vào giỏ hàng.")
-  // })
 }
 
 function correctLink(t) {
@@ -351,36 +350,18 @@ function addOrRemoveCartItem(t, e) {
   var n = {},
     r = [];
   r.push(e), n.data = r, $("#cart-mask").show(), jQuery.support.cors = !0;
-  $("#asachina-btn-submit").removeAttr("disabled");
-  $("#cart-mask").hide();
-
-  if (storageData.length == 0) {
-    // Bình thường
-    asachinaAlert("Thông báo", '<p>Thêm sản phẩm vào giỏ hàng thành công.</p><p style="margin-top: 20px; text-align: center"><button class="btn btn-success btn-sm asachinaremovebox">Tiếp tục mua hàng</button> <button class="btn btn-default btn-sm btn-show-cart">Xem giỏ hàng</button></p></p>');
-  }
-
-  storageData.forEach(function(item, index, object) {
-    if (e.proId == item.proId 
-      && e.skullId == item.skullId 
-      && e.size == item.size 
-      && e.sizetxt == item.sizetxt
-      && e.color == item.color
-      && e.colortxt == item.colortxt) {
-        object.splice(index, 1);
-        // Đã tồn tại, cập nhật số lượng
-        asachinaAlert("Thông báo", '<p>Sản phẩm đã có trong giỏ hàng, cập nhật số lượng thành công.</p><p style="margin-top: 20px; text-align: center"><button class="btn btn-success btn-sm asachinaremovebox">Tiếp tục mua hàng</button> <button class="btn btn-default btn-sm btn-show-cart">Xem giỏ hàng</button></p></p>'); 
-    } else {
-      // Bình thường
-      asachinaAlert("Thông báo", '<p>Thêm sản phẩm vào giỏ hàng thành công.</p><p style="margin-top: 20px; text-align: center"><button class="btn btn-success btn-sm asachinaremovebox">Tiếp tục mua hàng</button> <button class="btn btn-default btn-sm btn-show-cart">Xem giỏ hàng</button></p></p>');
-    }
-  });
-
   addItem(e);
-  // $.post("https://taobaovietnam.vn/ShopCart/AddNewProduct", n, function (t) {
-  //   null != t && (1 == t.data ? ($("#cart-mask").hide(), asachinaAlert("Thông báo", '<p>Thêm sản phẩm vào giỏ hàng thành công.</p><p style="margin-top: 20px; text-align: center"><button class="btn btn-success btn-sm asachinaremovebox">Tiếp tục mua hàng</button> <a target="_blank" href="http://taobaovietnam.vn/gio-hang" class="btn btn-default btn-sm">Xem giỏ hàng</a></p>')) : 2 == t.data ? ($("#cart-mask").hide(), asachinaAlert("Thông báo", '<p>Sản phẩm đã có trong giỏ hàng, cập nhật số lượng thành công.</p><p style="margin-top: 20px; text-align: center"><button class="btn btn-success btn-sm asachinaremovebox">Tiếp tục mua hàng</button> <a target="_blank" href="http://taobaovietnam.vn/gio-hang" class="btn btn-default btn-sm">Xem giỏ hàng</a></p>')) : 4 == t.data ? ($("#cart-mask").hide(), asachinaAlert("Thông báo", '<p><b>Bạn vui lòng đăng nhập hệ thống để thêm sản phẩm vào giỏ hàng. </b><br> <span style="color: red;">(Khi bạn đăng nhập thì khi chuyển máy tính khác giỏ hàng của bạn vẫn được giữ nguyên)</span></p><p style="margin-top: 20px; text-align: center"><a target="_blank" href="https://taobaovietnam.vn/dang-nhap" class="btn btn-success btn-sm asachinaremovebox">Đăng nhập</a> <a target="_blank" href="https://taobaovietnam.vn/dang-ky" class="btn btn-default btn-sm">Đăng ký</a></p>')) : ($("#cart-mask").hide(), asachinaAlert("Thông báo lỗi", "Không thêm được sản phẩm vào giỏ hàng.")))
-  // }).fail(function (t) {
-  //   console.log(n), console.log(t), $("#cart-mask").hide(), asachinaAlert("Thông báo lỗi", "Không thêm được sản phẩm vào giỏ hàng.")
-  // })
+}
+
+function redirectToAsachina() {
+  if (storageData.length) {
+    storageData.forEach(function(item) {
+      item.pro_note = $("#pro_note").val() ? $("#pro_note").val() : 'No comment';
+    });
+    redirect(host + '/manager/dashboard/orders/extmade', storageData);
+  } else {
+    asachinaAlert("Thông báo", "Bạn chưa thêm sản phẩm nào vào giỏ hàng!");
+  }
 }
 
 function calculatePrice(t) {
@@ -6369,8 +6350,8 @@ function () {
   })) : p && d ? v ? (d.exports = Ki)._ = Ki : p._ = Ki : Gi._ = Ki
 }.call(this), retrieveWindowVariables();
 var products = [],
-  // host = 'http://asachina.vn',
-  host = 'http://localhost:8000'
+  host = 'http://asachina.vn',
+  // host = 'http://localhost:8000'
   product1688 = [],
   STORAGE = "tbex_products",
   REQUEST_DATA = "REQUEST_DATA",
@@ -6455,7 +6436,11 @@ var asachinaAlert = function (t, e) {
   var u = $("<div>");
   u.attr({
     id: "asachina-alert-body"
-  }).html(e), r.append(o, u), $("body").append(r, n);
+  }).html(e), r.append(o, u);
+  r.find('.btn-show-cart').on('click', function() {
+    redirectToAsachina();
+  });
+  $("body").append(r, n);
   var s = setTimeout(function () {}, 1500);
   $("#asachina-alert-wrapper").mouseout(function () {
     s = setTimeout(function () {}, 1500)
@@ -6519,7 +6504,7 @@ $(function () {
     s = u.val();
   void 0 !== s && null != s && 1 <= s && capnhatSoLuong(u, s), 0 < r.length && (r = "<li>" + r + "</li>");
   //var c = ['<div id="asachina-info"><h5 class="tool_title">Hùng Thịnh Logistics Order Tool</h5><div class="asachina-info-inner">', '<img src="' + chrome.extension.getURL('/images/logo.png') + '" alt="Hùng Thịnh Logistics" />', "<ul>", '<li>Giá bán: <b class="asachina-rate asachina-color-price">' + n + '</b> VNĐ <span class="asachina-cny" style="font-weight: bold;color: #357ae8;font-size: 16px;"></span></li>', '<li>Tỷ giá: <span class="asachina-color-price">' + config.rate.format() + "</span> VNĐ/tệ</li>", r, "</ul>", '<div class="asachina-info-warning">(!!) Vui lòng chọn đầy đủ thông tin sản phẩm ở bên dưới để xem giá chuẩn.</div>', '</div><div class="asachina_note"><textarea id="pro_note" rows="2" placeholder="Ghi chú sản phẩm"></textarea><p class="google_translate">Lưu ý : <strong> không dùng Google Translate</strong> khi thêm sản phẩm!</p></div><div class="asachina_action"><button id="asachina-btn-product" type="button" class="btn btn-sm">Thêm Sản phẩm yêu thích</button><button id="asachina-btn-shop" type="button" class="btn btn-sm">Thêm Shop yêu thích</button></div></div>'].join("");
-  var c = ['<div id="asachina-info" style="background-image: url(' + chrome.extension.getURL('/images/bg.jpg') + '); background-position: bottom left;"><h5 class="tool_title">Asachina Google Chorme Extension</h5><div class="asachina-info-inner">', "<ul>", '<li><span class="tag-ext badge badge-dark">Giá bán</span><span class="asachina-rate asachina-color-price tag-value badge badge-danger">' + n + ' VNĐ</span><span class="asachina-cny"></span></li>', '<li><span class="tag-ext badge badge-dark">Tỷ giá</span> <span class="asachina-color-price tag-value badge badge-danger">' + config.rate.format() + " VNĐ/tệ</span></li>", r, "</ul>", '<div class="asachina-info-warning">(!!) Vui lòng chọn đầy đủ thông tin sản phẩm ở bên dưới để xem giá chuẩn.</div>', '</div><div class="asachina_note"><textarea id="pro_note" rows="2" placeholder="Ghi chú sản phẩm"></textarea><p class="google_translate">Lưu ý : <strong> không dùng Google Translate</strong> khi thêm sản phẩm!</p></div></div>'].join("");
+  var c = ['<div id="asachina-info"><h5 class="tool_title">Asachina Google Chorme Extension</h5><div class="asachina-info-inner">', "<ul>", '<li><span class="tag-ext badge badge-dark">Giá bán</span><span class="asachina-rate asachina-color-price tag-value badge badge-danger">' + n + ' VNĐ</span><span class="asachina-cny"></span></li>', '<li><span class="tag-ext badge badge-dark">Tỷ giá</span> <span class="asachina-color-price tag-value badge badge-danger">' + config.rate.format() + " VNĐ/tệ</span></li>", r, "</ul>", '<div class="asachina-info-warning">(!!) Vui lòng chọn đầy đủ thông tin sản phẩm ở bên dưới để xem giá chuẩn.</div>', '</div><div class="asachina_note"><textarea id="pro_note" rows="2" placeholder="Ghi chú sản phẩm"></textarea><p class="google_translate">Lưu ý : <strong> không dùng Google Translate</strong> khi thêm sản phẩm!</p></div></div>'].join("");
   $("#J_Title, .tb-detail-hd, #mod-detail-price, .offerdetail_daixiao_price").append(c), $("h1.product-name").after(c), $("#asachina-btn-submit-action").on("click", order), $("#asachina-btn-view").on("click", function (t) {
     t.preventDefault();
     // window.open("http://taobaovietnam.vn/gio-hang", "_blank")
@@ -6547,14 +6532,7 @@ $(function () {
     }, "Xem giỏ hàng", function (t) {
       t && t.preventDefault();
       // window.open("http://taobaovietnam.vn/gio-hang", "_blank").focus()
-      if (storageData.length) {
-        storageData.forEach(function(item) {
-          item.pro_note = $("#pro_note").val() ? $("#pro_note").val() : 'No comment';
-        });
-        redirect(host + '/manager/dashboard/orders/extmade', storageData);
-      } else {
-        asachinaAlert("Thông báo", "Bạn chưa thêm sản phẩm nào vào giỏ hàng!");
-      }
+      redirectToAsachina();
     }),
     p = makeButton({
       id: "asachina-btn-submit",
@@ -6574,7 +6552,7 @@ $(function () {
   }).html('<span class="text-white"><strong>Chú ý:</strong> Sản phẩm vừa được cập nhật giá theo thuộc tính đã chọn, vui lòng kiểm tra lại thông tin!</span>').hide().on("click", function () {
     $(this).hide()
   });
-  l.append('<button id="asachina-btn-hide-show" class="btn btn-sm btn-default arrow-hide"><img src="' + chrome.extension.getURL('/images/arrow.png') + '"></button>', d, f, p, h, '<div name="asachina_search" class="form_ex element-hide" accept-charset="UTF-8"><select name="search_type" id="search_type" class="cbSelect search_option"><option value="product" selected="selected">Tìm sản phẩm</option><option value="shop">Tìm xưởng</option></select>   <select id="location" name="location" class="cbSelect search_option"><option value="0">Địa điểm</option><option value="广州">Quảng Châu</option><option value="广东">Quảng Đông</option><option value="湖南">Hồ Nam</option><option value="贵州">Quý Châu</option><option value="广西">Quảng Tây</option><option value="江浙沪">Giang Tô , Chiết Giang</option><option value="北京">Bắc Kinh</option><option value="上海">Thượng Hải</option><option value="天津">Thiên Tân</option><option value="重庆">Trùng Khánh</option><option value="浙江">Chiết Giang</option><option value="江苏">Tỉnh Giang Tô</option><option value="山东">Sơn Đông</option><option value="河北">Hà Bắc</option><option value="河南">Hà Nam</option><option value="福建">Tỉnh Phúc Kiến</option><option value="辽宁">Tỉnh Liêu Ninh</option><option value="安徽">An Huy</option><option value="山西">Sơn Tây</option><option value="海南">Hải Nam</option><option value="内蒙古">nội Mông</option><option value="吉林">Cát Lâm</option><option value="黑龙江">Hắc Long Giang</option><option value="湖北">Hồ Bắc</option><option value="江西">Tỉnh Giang Tây</option><option value="宁夏">Ninh Hạ</option><option value="新疆">Tân Cương</option><option value="青海">Thanh Hải</option><option value="陕西">Tỉnh Sơn Tây</option><option value="甘肃">Tỉnh Cam Túc</option><option value="四川">Tỉnh Tứ Xuyên</option><option value="云南">Vân Nam</option><option value="西藏">Tây Tạng</option><option value="香港">Hồng Kông</option><option value="澳门">Macao</option><option value="台湾">Đài Loan</option></select>    <select name="langfrom" id="langfrom" class="cbSelect"><option value="vi" selected="selected">Tiếng Việt</option><option value="en">Tiếng Anh</option></select><input type="text" class="text" id="search-keyword" placeholder="Từ khóa" name="key" autocomplete="off"><a class="button" id="bt-search">Tìm Kiếm</a></div>'), $("body").prepend(l), $("#asachina-btn-favorite").on("click", function (t) {
+  l.append('<button id="asachina-btn-hide-show" class="btn bg-warning arrow-hide"><img src="' + chrome.extension.getURL('/images/arrow.png') + '"></button>', d, f, p, h, '<div name="asachina_search" class="form_ex element-hide" accept-charset="UTF-8"><select name="search_type" id="search_type" class="cbSelect search_option"><option value="product" selected="selected">Tìm sản phẩm</option><option value="shop">Tìm xưởng</option></select>   <select id="location" name="location" class="cbSelect search_option"><option value="0">Địa điểm</option><option value="广州">Quảng Châu</option><option value="广东">Quảng Đông</option><option value="湖南">Hồ Nam</option><option value="贵州">Quý Châu</option><option value="广西">Quảng Tây</option><option value="江浙沪">Giang Tô , Chiết Giang</option><option value="北京">Bắc Kinh</option><option value="上海">Thượng Hải</option><option value="天津">Thiên Tân</option><option value="重庆">Trùng Khánh</option><option value="浙江">Chiết Giang</option><option value="江苏">Tỉnh Giang Tô</option><option value="山东">Sơn Đông</option><option value="河北">Hà Bắc</option><option value="河南">Hà Nam</option><option value="福建">Tỉnh Phúc Kiến</option><option value="辽宁">Tỉnh Liêu Ninh</option><option value="安徽">An Huy</option><option value="山西">Sơn Tây</option><option value="海南">Hải Nam</option><option value="内蒙古">nội Mông</option><option value="吉林">Cát Lâm</option><option value="黑龙江">Hắc Long Giang</option><option value="湖北">Hồ Bắc</option><option value="江西">Tỉnh Giang Tây</option><option value="宁夏">Ninh Hạ</option><option value="新疆">Tân Cương</option><option value="青海">Thanh Hải</option><option value="陕西">Tỉnh Sơn Tây</option><option value="甘肃">Tỉnh Cam Túc</option><option value="四川">Tỉnh Tứ Xuyên</option><option value="云南">Vân Nam</option><option value="西藏">Tây Tạng</option><option value="香港">Hồng Kông</option><option value="澳门">Macao</option><option value="台湾">Đài Loan</option></select>    <select name="langfrom" id="langfrom" class="cbSelect"><option value="vi" selected="selected">Tiếng Việt</option><option value="en">Tiếng Anh</option></select><input type="text" class="text" id="search-keyword" placeholder="Từ khóa" name="key" autocomplete="off"><a class="button" id="bt-search">Tìm Kiếm</a></div>'), $("body").prepend(l), $("#asachina-btn-favorite").on("click", function (t) {
     t.preventDefault(), $("#asachina-box-favorite").show()
   }), $(".tbe_remove").on("click", function (t) {
     t.preventDefault(), $("#asachina-box-favorite").hide()
